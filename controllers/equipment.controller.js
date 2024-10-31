@@ -1,6 +1,6 @@
 import Equipment from "../models/equipment.model.js";
 
-const getAllEquipment = async (_req, res) => {
+const getAllEquipment = async (req, res) => {
   try {
     const equipment = await Equipment.find(undefined, undefined, undefined);
     return res.status(200).json(equipment);
