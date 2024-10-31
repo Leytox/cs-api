@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import csRouter from "./routers/cs/cs.router.js";
 
 dotenv.config();
 
@@ -21,3 +22,5 @@ mongoose
     );
   })
   .catch((error) => console.error("Error connecting to MongoDB:", error));
+
+app.use("/api/v1/cs", csRouter);
