@@ -7,8 +7,7 @@ This project provides a comprehensive API for Counter-Strike 1.6, offering data 
 - **Weapons**: Detailed information about all weapons available in CS 1.6.
 - **Equipment**: Data on various equipment items.
 - **Maps**: Information about different maps used in the game.
-- **Teams**: Information about teams and their players.
-- **Game Modes**: Details about different game modes.
+- **Teams**: Information about teams.
 
 ## Getting Started
 
@@ -70,11 +69,7 @@ npm start
 
 - `GET /api/teams`: Retrieve a list of all teams.
 - `GET /api/teams/:id`: Retrieve detailed information about a specific team.
-
-### Game Modes
-
-- `GET /api/gameModes`: Retrieve a list of all game modes.
-- `GET /api/gameModes/:id`: Retrieve detailed information about a specific game mode.
+- `GET /api/teams/[faction_name]`: Retrieve specific faction teams.
 
 ## Contributing
 
