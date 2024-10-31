@@ -1,4 +1,5 @@
 # CS 1.6 API
+![cs_api](https://github.com/user-attachments/assets/0ce9d088-86f5-4095-bc88-79f22855519b)
 
 This project provides a comprehensive API for Counter-Strike 1.6, offering data in handy JSON format about weapons, equipment, maps, teams, game modes, and more.
 
