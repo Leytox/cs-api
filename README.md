@@ -1,6 +1,7 @@
 # CS 1.6 API
 
-This project provides a comprehensive API for Counter-Strike 1.6, offering data in handy JSON format about weapons, equipment, maps, teams, game modes, and more.
+This project provides a comprehensive API for Counter-Strike 1.6, offering data in handy JSON format about weapons,
+equipment, maps, teams, game modes, and more.
 
 ## Features
 
@@ -39,11 +40,13 @@ This project provides a comprehensive API for Counter-Strike 1.6, offering data 
 ### Running the Application
 
 To start the application in development mode:
+
 ```sh
 npm run dev
 ```
 
 To start the application in production mode:
+
 ```sh
 npm start
 ```
@@ -70,6 +73,15 @@ npm start
 - `GET /api/teams`: Retrieve a list of all teams.
 - `GET /api/teams/:id`: Retrieve detailed information about a specific team.
 - `GET /api/teams/[faction_name]`: Retrieve specific faction teams.
+
+### Docker
+
+To run the application using Docker, build the image and run the container:
+
+```sh
+docker build -t cs-api .
+docker run -p 5000:5000 cs-api
+```
 
 ## Contributing
 
