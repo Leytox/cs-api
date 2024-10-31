@@ -1,6 +1,6 @@
 import Weapon from "../models/weapon.model.js";
 
-const getAllWeapon = async (_req, res) => {
+const getAllWeapons = async (_req, res) => {
   try {
     const weapon = await Weapon.find(undefined, undefined, undefined);
     return res.status(200).json(weapon);
@@ -30,4 +30,4 @@ const getWeaponById = async (req, res) => {
   }
 };
 
-export default { getAllWeapon, getWeaponByName, getWeaponById };
+export default { getAllWeapons, getWeaponByName, getWeaponById };
