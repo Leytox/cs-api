@@ -1,5 +1,41 @@
 import Map from "../models/map.model.js";
 
+const createMap = async (req, res) => {
+  try {
+    const {
+      name,
+      scenario,
+      developers,
+      terroristMission,
+      counterTerroristMission,
+    } = req.body;
+
+    // Basic validation
+    if (
+      !name ||
+      !scenario ||
+      !developers ||
+      !terroristMission ||
+      !counterTerroristMission
+    ) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const newMap = new Map({
+      name,
+      scenario,
+      developers,
+      terroristMission,
+      counterTerroristMission,
+    });
+
+    const savedMap = await newMap.save();
+    return res.status(201).json(savedMap);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const getAllMaps = async (_req, res) => {
   try {
     const maps = await Map.find(undefined, undefined, undefined);
@@ -30,4 +66,4 @@ const getMapById = async (req, res) => {
   }
 };
 
-export default { getAllMaps, getMapByName, getMapById };
+export default { createMap, getAllMaps, getMapByName, getMapById };

@@ -1,5 +1,61 @@
 import Weapon from "../models/weapon.model.js";
 
+const createWeapon = async (req, res) => {
+  try {
+    const {
+      name,
+      type,
+      price,
+      countryOfOrigin,
+      caliber,
+      clipCapacity,
+      rateOfFire,
+      weight,
+      projectileWeight,
+      muzzleVelocity,
+      muzzleEnergy,
+      image,
+    } = req.body;
+
+    // Basic validation
+    if (
+      !name ||
+      !type ||
+      !price ||
+      !countryOfOrigin ||
+      !caliber ||
+      !clipCapacity ||
+      !rateOfFire ||
+      !weight ||
+      !projectileWeight ||
+      !muzzleVelocity ||
+      !muzzleEnergy
+    ) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const newWeapon = new Weapon({
+      name,
+      type,
+      price,
+      countryOfOrigin,
+      caliber,
+      clipCapacity,
+      rateOfFire,
+      weight,
+      projectileWeight,
+      muzzleVelocity,
+      muzzleEnergy,
+      image,
+    });
+
+    const savedWeapon = await newWeapon.save();
+    return res.status(201).json(savedWeapon);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const getAllWeapons = async (_req, res) => {
   try {
     const weapon = await Weapon.find(undefined, undefined, undefined);
@@ -30,4 +86,4 @@ const getWeaponById = async (req, res) => {
   }
 };
 
-export default { getAllWeapons, getWeaponByName, getWeaponById };
+export default { createWeapon, getAllWeapons, getWeaponByName, getWeaponById };

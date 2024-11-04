@@ -1,5 +1,28 @@
 import Equipment from "../models/equipment.model.js";
 
+const createEquipment = async (req, res) => {
+  try {
+    const { name, price, description, image } = req.body;
+
+    // Basic validation
+    if (!name || !price || !description) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const newEquipment = new Equipment({
+      name,
+      price,
+      description,
+      image,
+    });
+
+    const savedEquipment = await newEquipment.save();
+    return res.status(201).json(savedEquipment);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const getAllEquipment = async (req, res) => {
   try {
     const equipment = await Equipment.find(undefined, undefined, undefined);
@@ -36,4 +59,9 @@ const getEquipmentById = async (req, res) => {
   }
 };
 
-export default { getAllEquipment, getEquipmentByName, getEquipmentById };
+export default {
+  createEquipment,
+  getAllEquipment,
+  getEquipmentByName,
+  getEquipmentById,
+};
