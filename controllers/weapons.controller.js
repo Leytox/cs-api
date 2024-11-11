@@ -11,6 +11,7 @@ const createWeapon = async (req, res) => {
       clipCapacity,
       rateOfFire,
       weight,
+      faction,
       projectileWeight,
       muzzleVelocity,
       muzzleEnergy,
@@ -25,6 +26,7 @@ const createWeapon = async (req, res) => {
       !countryOfOrigin ||
       !caliber ||
       !clipCapacity ||
+      !faction ||
       !rateOfFire ||
       !weight ||
       !projectileWeight ||
@@ -39,6 +41,7 @@ const createWeapon = async (req, res) => {
       type,
       price,
       countryOfOrigin,
+      faction,
       caliber,
       clipCapacity,
       rateOfFire,

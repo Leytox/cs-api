@@ -5,6 +5,11 @@ const weaponSchema = new mongoose.Schema({
   type: { type: String, required: true },
   price: { type: Number, required: true },
   countryOfOrigin: { type: String, required: true },
+  faction: [{
+    type: String,
+    enum: ["Terrorist", "Counter-Terrorist"],
+    required: true,
+  }],
   caliber: { type: String, required: true },
   clipCapacity: { type: Number, required: true },
   rateOfFire: { type: Number, required: true },
