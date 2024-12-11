@@ -3,7 +3,6 @@ import weaponsController from "../controllers/weapons.controller.js";
 
 const router = Router();
 
-router.post("/", weaponsController.createWeapon);
 router.get("/", weaponsController.getAllWeapons);
 router.get("/:name", weaponsController.getWeaponByName);
 router.get("/:id", weaponsController.getWeaponById);
