@@ -3,13 +3,21 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import indexRouter from "./routes/index.router.js";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
 const app = express();
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 300,
+    message: "Too many requests from this IP, please try again after 15 minutes",
+})
+
 
 app.use(cors());
 app.use(express.json());
+app.use(limiter);
 
 mongoose
     .connect(process.env.MONGODB || "")
