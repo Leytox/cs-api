@@ -1,8 +1,9 @@
 import Weapon from "../models/weapon.model.js";
 
-const getAllWeapons = async (_req, res) => {
+const getAllWeapons = async (req, res) => {
+    const {limit, offset} = req.query;
     try {
-        const weapon = await Weapon.find(undefined, "-_id -__v", undefined);
+        const weapon = await Weapon.find(undefined, "-_id -__v", undefined).limit(parseInt(limit)).skip(parseInt(offset));
         return res.status(200).json(weapon);
     } catch (error) {
         res.status(500).json({message: error.message});

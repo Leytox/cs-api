@@ -1,8 +1,9 @@
 import Equipment from "../models/equipment.model.js";
 
 const getAllEquipment = async (req, res) => {
+    const {limit, offset} = req.query;
     try {
-        const equipment = await Equipment.find(undefined, "-_id -__v", undefined);
+        const equipment = await Equipment.find(undefined, "-_id -__v", undefined).limit(parseInt(limit)).skip(parseInt(offset));
         return res.status(200).json(equipment);
     } catch (error) {
         res.status(500).json({message: error.message});

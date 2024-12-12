@@ -1,9 +1,10 @@
 import Class from "../models/class.model.js";
 
 
-const getAllClasses = async (_req, res) => {
+const getAllClasses = async (req, res) => {
+    const {limit, offset} = req.query;
     try {
-        const classes = await Class.find(undefined, "-_id -__v", undefined);
+        const classes = await Class.find(undefined, "-_id -__v", undefined).limit(parseInt(limit)).skip(parseInt(offset));
         return res.status(200).json(classes);
     } catch (error) {
         res.status(500).json({message: error.message});

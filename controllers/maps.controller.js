@@ -1,9 +1,10 @@
 import Map from "../models/map.model.js";
 
 
-const getAllMaps = async (_req, res) => {
+const getAllMaps = async (req, res) => {
+    const {limit, offset} = req.query;
     try {
-        const maps = await Map.find(undefined, "-_id -__v", undefined);
+        const maps = await Map.find(undefined, "-_id -__v", undefined).limit(parseInt(limit)).skip(parseInt(offset));
         return res.status(200).json(maps);
     } catch (error) {
         res.status(500).json({message: error.message});
