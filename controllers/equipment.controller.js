@@ -20,7 +20,16 @@ const getEquipmentByName = async (req, res) => {
         return res.status(500).json({message: error.message});
     }
 };
-
+const getEquipmentByFaction = async (req, res) => {
+    const {faction} = req.params;
+    try {
+        const equipment = await Equipment.find({faction}, "-_id -__v", undefined);
+        if (!equipment) return res.status(404).json({message: "Equipment not found"});
+        return res.status(200).json(equipment);
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
+}
 const getEquipmentById = async (req, res) => {
     try {
         const equipment = await Equipment.findById(
@@ -38,6 +47,6 @@ const getEquipmentById = async (req, res) => {
 
 export default {
     getAllEquipment,
-    getEquipmentByName,
+    getEquipmentByName, getEquipmentByFaction,
     getEquipmentById,
 };
