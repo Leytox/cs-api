@@ -19,7 +19,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:6.0-alpine
+    image: mongo
     container_name: cs-mongodb
     restart: unless-stopped
     ports:
