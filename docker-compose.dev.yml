@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: cs-api-dev
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - MONGODB=mongodb://mongo:27017/cs-api
+      - PORT=5000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - cs-network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0-alpine
+    container_name: cs-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data-dev:/data/db
+    networks:
+      - cs-network
+    command: mongod --quiet --logpath /dev/null
+
+networks:
+  cs-network:
+    driver: bridge
+
+volumes:
+  mongo-data-dev:
+    driver: local
