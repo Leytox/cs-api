@@ -6,7 +6,12 @@ const options = {
     info: {
       title: "CS API",
       version: "1.0.0",
-      description: "API documentation for CS API",
+      description: "A comprehensive API for Counter-Strike game data",
+      contact: {
+        name: "API Support",
+        url: "https://t.me/leytox",
+        email: "iladevder@gmail.com",
+      },
     },
     servers: [
       {
@@ -15,7 +20,7 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/*.js"],
+  apis: ["./routes/*.js", "./routes/schemas.js"],
 };
 
 export const specs = swaggerJsdoc(options);
