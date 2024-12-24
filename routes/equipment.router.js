@@ -1,6 +1,7 @@
 import Router from "express";
 import equipmentController from "../controllers/equipment.controller.js";
-
+import validate from "../middleware/validate.js";
+import equipmentValidation from "../validation/equipment.validation.js";
 const router = Router();
 
 /**
@@ -111,9 +112,25 @@ const router = Router();
  *         description: Server error
  */
 
-router.get("/", equipmentController.getAllEquipment);
-router.get("/name/:name", equipmentController.getEquipmentByName);
-router.get("/faction/:faction", equipmentController.getEquipmentByFaction);
-router.get("/:id", equipmentController.getEquipmentById);
+router.get(
+  "/",
+  validate(equipmentValidation.getAll),
+  equipmentController.getAllEquipment,
+);
+router.get(
+  "/name/:name",
+  validate(equipmentValidation.getByName),
+  equipmentController.getEquipmentByName,
+);
+router.get(
+  "/faction/:faction",
+  validate(equipmentValidation.getByFaction),
+  equipmentController.getEquipmentByFaction,
+);
+router.get(
+  "/:id",
+  validate(equipmentValidation.getById),
+  equipmentController.getEquipmentById,
+);
 
 export default router;

@@ -1,5 +1,7 @@
 import Router from "express";
 import mapsController from "../controllers/maps.controller.js";
+import validate from "../middleware/validate.js";
+import mapValidation from "../validation/map.validation.js";
 
 const router = Router();
 
@@ -136,10 +138,22 @@ const router = Router();
  *         description: Server error
  */
 
-router.get("/", mapsController.getAllMaps);
-router.get("/name/:name", mapsController.getMapByName);
-router.get("/scenario/:scenario", mapsController.getMapsByScenario);
-router.get("/developer/:developer", mapsController.getMapsByDeveloper);
-router.get("/:id", mapsController.getMapById);
+router.get("/", validate(mapValidation.getAll), mapsController.getAllMaps);
+router.get(
+  "/name/:name",
+  validate(mapValidation.getByName),
+  mapsController.getMapByName,
+);
+router.get(
+  "/scenario/:scenario",
+  validate(mapValidation.getByScenario),
+  mapsController.getMapsByScenario,
+);
+router.get(
+  "/developer/:developer",
+  validate(mapValidation.getByDeveloper),
+  mapsController.getMapsByDeveloper,
+);
+router.get("/:id", validate(mapValidation.getById), mapsController.getMapById);
 
 export default router;
