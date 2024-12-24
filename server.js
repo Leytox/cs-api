@@ -5,6 +5,7 @@ import cors from "cors";
 import indexRouter from "./routes/index.router.js";
 import rateLimit from "express-rate-limit";
 import swaggerUi from "swagger-ui-express";
+import morgan from "morgan";
 import { specs } from "./swagger.js";
 dotenv.config();
 
@@ -17,6 +18,8 @@ const limiter = rateLimit({
 app.use(cors());
 app.use(express.json());
 app.use(limiter);
+
+app.use(morgan("dev"));
 
 mongoose
   .connect(process.env.MONGODB || "")
