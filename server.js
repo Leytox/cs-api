@@ -6,7 +6,15 @@ import indexRouter from "./routes/index.router.js";
 import rateLimit from "express-rate-limit";
 import swaggerUi from "swagger-ui-express";
 import morgan from "morgan";
+import favicon from "serve-favicon";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import { specs } from "./swagger.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 dotenv.config();
 
 const app = express();
@@ -16,9 +24,9 @@ const limiter = rateLimit({
 });
 
 app.use(cors());
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(express.json());
 app.use(limiter);
-
 app.use(morgan("dev"));
 
 mongoose
