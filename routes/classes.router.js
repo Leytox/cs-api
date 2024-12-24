@@ -1,5 +1,7 @@
 import Router from "express";
 import classesController from "../controllers/classes.controller.js";
+import validate from "../middleware/validate.js";
+import classValidation from "../validation/class.validation.js";
 
 const router = Router();
 /**
@@ -110,9 +112,25 @@ const router = Router();
  *         description: Server error
  */
 
-router.get("/", classesController.getAllClasses);
-router.get("/name/:name", classesController.getClassByName);
-router.get("/faction/:faction", classesController.getClassesByFaction);
-router.get("/:id", classesController.getClassById);
+router.get(
+  "/",
+  validate(classValidation.getAll),
+  classesController.getAllClasses,
+);
+router.get(
+  "/name/:name",
+  validate(classValidation.getByName),
+  classesController.getClassByName,
+);
+router.get(
+  "/faction/:faction",
+  validate(classValidation.getByFaction),
+  classesController.getClassesByFaction,
+);
+router.get(
+  "/:id",
+  validate(classValidation.getById),
+  classesController.getClassById,
+);
 
 export default router;

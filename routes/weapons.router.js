@@ -1,5 +1,7 @@
 import Router from "express";
 import weaponsController from "../controllers/weapons.controller.js";
+import validate from "../middleware/validate.js";
+import weaponValidation from "../validation/weapon.validation.js";
 
 const router = Router();
 
@@ -136,10 +138,30 @@ const router = Router();
  *         description: Server error
  */
 
-router.get("/", weaponsController.getAllWeapons);
-router.get("/name/:name", weaponsController.getWeaponByName);
-router.get("/type/:type", weaponsController.getWeaponsByType);
-router.get("/country/:country", weaponsController.getWeaponsByCountry);
-router.get("/:id", weaponsController.getWeaponById);
+router.get(
+  "/",
+  validate(weaponValidation.getAll),
+  weaponsController.getAllWeapons,
+);
+router.get(
+  "/name/:name",
+  validate(weaponValidation.getByName),
+  weaponsController.getWeaponByName,
+);
+router.get(
+  "/type/:type",
+  validate(weaponValidation.getByType),
+  weaponsController.getWeaponsByType,
+);
+router.get(
+  "/country/:country",
+  validate(weaponValidation.getByCountry),
+  weaponsController.getWeaponsByCountry,
+);
+router.get(
+  "/:id",
+  validate(weaponValidation.getById),
+  weaponsController.getWeaponById,
+);
 
 export default router;
