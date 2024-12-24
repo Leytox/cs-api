@@ -5,10 +5,16 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+      "start": "node server.js",
+      "dev": "nodemon server.js",
+      "docker:build": "docker-compose build",
+      "docker:up": "docker-compose up -d",
+      "docker:down": "docker-compose down",
+      "docker:logs": "docker-compose logs -f",
+      "docker:dev:build": "docker-compose -f docker-compose.dev.yml build",
+      "docker:dev:up": "docker-compose -f docker-compose.dev.yml up -d",
+      "docker:dev:down": "docker-compose -f docker-compose.dev.yml down"
+    },
   "private": true,
   "dependencies": {
     "cors": "^2.8.5",
