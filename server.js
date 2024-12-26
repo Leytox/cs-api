@@ -42,4 +42,5 @@ mongoose
   .catch((error) => console.error("Error connecting to MongoDB:", error));
 
 app.use("/api/v1", indexRouter);
+app.use("/api/v1/images", express.static("images"));
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(specs));
