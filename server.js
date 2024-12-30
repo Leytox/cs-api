@@ -23,7 +23,9 @@ const limiter = rateLimit({
   limit: 300,
 });
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(express.json());
 app.use(limiter);
