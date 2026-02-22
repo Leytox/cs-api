@@ -50,7 +50,7 @@ npm install
 ```env
 PORT=5000
 MONGODB=mongodb://localhost:27017/cs-api
-ENVIRONMENT=development
+NODE_ENV=development
 ```
 
 ### 🐳 Docker Setup
@@ -196,7 +196,7 @@ npm run docker:down
 ### Environment Variables
 - `PORT`: API port (default: 5000)
 - `MONGODB`: MongoDB connection string
-- `ENVIRONMENT`: Application environment (development/production)
+- `NODE_ENV`: Application environment (development/production)
 
 ## 🤝 Contributing
 
